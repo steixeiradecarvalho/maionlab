@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mAIonLab - Plataforma AI-First para Empreendimentos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* Variáveis de cor e gradiente */
+    :root {
+      --primary-600: #5b21b6;       /* Roxo intenso */
+      --secondary-500: #2dd4bf;     /* Turquesa vibrante */
+      --accent-500: #ff6b6b;        /* Coral energético */
+      --primary-gradient: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+    }
+    .gradient-bg {
+      background: var(--primary-gradient);
+    }
+    .hover-scale {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 24px rgba(91, 33, 182, 0.15);
+    }
+    .glow {
+      box-shadow: 0 0 15px rgba(93, 181, 213, 0.3);
+    }
+    .section-divider {
+      height: 100px;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(247,250,252,1) 100%);
+    }
+    .ai-agent-card {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(224,231,255,0.4);
+    }
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      background: var(--primary-gradient);
+    }
+    .animated-dots::after {
+      content: '.';
+      animation: dots 1.5s steps(5, end) infinite;
+    }
+    @keyframes dots {
+      0%, 20% { content: '.'; }
+      40% { content: '..'; }
+      60% { content: '...'; }
+      80%, 100% { content: ''; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm fixed w-full z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 flex items-center">
+            <i class="fas fa-brain text-[var(--primary-600)] text-2xl mr-2"></i>
+            <span class="text-xl font-bold text-gray-900">mAIonLab</span>
+          </div>
+        </div>
+        <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+          <a href="#about" class="text-gray-700 hover:text-[var(--primary-600)] px-3 py-2 text-sm font-medium">O que é?</a>
+          <a href="#how" class="text-gray-700 hover:text-[var(--primary-600)] px-3 py-2 text-sm font-medium">Como funciona</a>
+          <a href="#who" class="text-gray-700 hover:text-[var(--primary-600)] px-3 py-2 text-sm font-medium">Para quem é</a>
+          <a href="#principles" class="text-gray-700 hover:text-[var(--primary-600)] px-3 py-2 text-sm font-medium">Princípios</a>
+          <a href="#apresentacao" class="text-gray-700 hover:text-[var(--primary-600)] px-3 py-2 text-sm font-medium">Explore</a>
+        </div>
+        <div class="flex items-center">
+          <a href="#cta" class="ml-8 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[var(--primary-600)] hover:bg-[#4c1d95] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors">
+            Comece com uma Ideia
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="gradient-bg pt-32 pb-20 px-4 sm:px-6 lg:px-8 text-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="md:flex md:items-center md:justify-between">
+        <div class="md:w-1/2 mb-12 md:mb-0">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            Construa seu Empreendimento <span class="animated-dots">AI-First</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-purple-100/90 mb-8">
+            Uma plataforma onde você transforma suas ideias em projetos ou negócios com a ajuda de IAs. Você cuida da visão e das decisões importantes — a IA faz o resto.
+          </p>
+          <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <a href="#cta" class="hover-scale inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-[var(--primary-600)] bg-white hover:bg-gray-50 glow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
+              Comece com uma Ideia <i class="fas fa-arrow-right ml-3"></i>
+            </a>
+            <a href="#how" class="hover-scale inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-[var(--primary-600)] bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-200">
+              <i class="fas fa-play-circle mr-3"></i> Veja como funciona
+            </a>
+          </div>
+        </div>
+        <div class="md:w-1/2 relative">
+          <div class="relative max-w-md mx-auto">
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-purple-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
+            <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-[var(--secondary-500)]/50 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
+            <div class="relative bg-white/10 backdrop-filter backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
+              <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-[var(--secondary-500)] flex items-center justify-center mr-3">
+                  <i class="fas fa-robot text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold">Assistente de Ideação</h3>
+              </div>
+              <div class="bg-black/20 rounded-lg p-4 mb-4">
+                <p class="text-sm text-purple-100">Qual problema ou oportunidade você gostaria de explorar?</p>
+              </div>
+              <div class="bg-white/90 rounded-lg p-4 text-gray-800">
+                <p class="text-sm">Analisando oportunidades... <i class="fas fa-cog fa-spin ml-2 text-[var(--primary-600)]"></i></p>
+              </div>
+              <div class="mt-6 flex justify-end">
+                <button class="text-xs bg-[var(--primary-600)] hover:bg-[#4c1d95] text-white px-3 py-1 rounded-full flex items-center transition-colors">
+                  Gerar ideias <i class="fas fa-magic ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <div class="section-divider"></div>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">O que é a mAIonLab?</h2>
+        <div class="w-24 h-1 bg-[var(--primary-600)] mx-auto mb-6"></div>
+        <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+          Muito além de uma plataforma de negócios – uma nova forma de pensar criação, estrutura e impacto.
+        </p>
+      </div>
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+          <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover-scale">
+            <p class="text-lg text-gray-700 leading-relaxed">
+              A mAIonLab é uma plataforma SaaS que permite a criação de empreendimentos AI-First. Ela amplia o conceito tradicional de “empresa”, permitindo que você organize serviços, defina propósitos e crie estruturas com o apoio de agentes de IA que executam e gerenciam processos – enquanto você foca no que só os humanos podem fazer.
+            </p>
+          </div>
+        </div>
+        <div class="md:w-1/2">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="ai-agent-card rounded-xl p-6 hover-scale">
+              <div class="text-[var(--primary-600)] mb-3">
+                <i class="fas fa-lightbulb text-3xl"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-2">Ideação Ampliada</h3>
+              <p class="text-gray-600 text-sm">Transforme insights em conceitos estruturados com a ajuda da IA.</p>
+            </div>
+            <div class="ai-agent-card rounded-xl p-6 hover-scale">
+              <div class="text-blue-600 mb-3">
+                <i class="fas fa-project-diagram text-3xl"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-2">Sistemas Produtivos</h3>
+              <p class="text-gray-600 text-sm">Monte ecossistemas de agentes inteligentes que operam para você.</p>
+            </div>
+            <div class="ai-agent-card rounded-xl p-6 hover-scale">
+              <div class="text-green-600 mb-3">
+                <i class="fas fa-chart-line text-3xl"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-2">Governança Inteligente</h3>
+              <p class="text-gray-600 text-sm">Controle estratégico com dashboards e feedbacks em tempo real.</p>
+            </div>
+            <div class="ai-agent-card rounded-xl p-6 hover-scale">
+              <div class="text-orange-600 mb-3">
+                <i class="fas fa-expand-arrows-alt text-3xl"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-2">Evolução Contínua</h3>
+              <p class="text-gray-600 text-sm">A plataforma aprende com suas decisões, adaptando-se e evoluindo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Como Funciona?</h2>
+        <div class="w-24 h-1 bg-[var(--primary-600)] mx-auto mb-6"></div>
+        <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+          Três etapas simples para transformar suas ideias em sistemas produtivos orientados por IA.
+        </p>
+      </div>
+      <div class="flex flex-col space-y-16">
+        <!-- Step 1 -->
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
+            <div class="feature-icon">
+              <i class="fas fa-lightbulb text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Geração de Ideias com Significado</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Inicie com um propósito, problema ou desejo. Nossa IA ajuda você a criar ideias viáveis — sejam elas comerciais, sociais, artísticas ou educacionais — ancoradas no que você já conhece.
+            </p>
+          </div>
+          <div class="md:w-1/2">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover-scale">
+              <div class="p-6 bg-gray-900 text-white flex items-center">
+                <div class="w-8 h-8 rounded-full bg-[var(--primary-600)] flex items-center justify-center mr-3">
+                  <i class="fas fa-lightbulb"></i>
+                </div>
+                <h4 class="font-medium">Assistente de Ideação</h4>
+              </div>
+              <div class="p-6">
+                <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                  <p class="text-sm text-gray-700">"Quero ajudar pequenos produtores rurais a venderem direto aos consumidores."</p>
+                </div>
+                <div class="bg-white border border-[var(--primary-600)] rounded-lg p-4">
+                  <p class="text-xs text-[var(--primary-600)] mb-1">Ideias geradas:</p>
+                  <ul class="list-disc list-inside text-sm text-gray-700 pl-2">
+                    <li>Plataforma de delivery de hortifruti</li>
+                    <li>Conexão direta entre produtores e consumidores</li>
+                    <li>Sistema de roteirização inteligente</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 order-2 md:order-1 mb-8 md:mb-0 md:pr-10">
+            <div class="feature-icon">
+              <i class="fas fa-robot text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Monte seu Sistema Produtivo com Agentes de IA</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Escolha e configure agentes inteligentes que atuam como sua equipe: marketing, atendimento, logística, financeiro, e muito mais. Você define a estratégia, a IA executa.
+            </p>
+          </div>
+          <div class="md:w-1/2 order-1 md:order-2">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover-scale">
+              <div class="p-6 bg-gray-900 text-white flex items-center">
+                <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center mr-3">
+                  <i class="fas fa-project-diagram"></i>
+                </div>
+                <h4 class="font-medium">Organizador de Agentes</h4>
+              </div>
+              <div class="p-6">
+                <div class="flex flex-wrap gap-3 mb-4">
+                  <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">Agente de Vendas</span>
+                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Agente de Logística</span>
+                  <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">Agente de Conteúdo</span>
+                  <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">Agente Financeiro</span>
+                </div>
+                <button class="w-full bg-[var(--primary-600)] hover:bg-[#4c1d95] text-white py-2 rounded-lg text-sm font-medium">
+                  Adicionar Novo Agente <i class="fas fa-plus ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
+            <div class="feature-icon">
+              <i class="fas fa-chart-network text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Você Decide. A IA Opera.</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Mantenha o controle estratégico com painéis e dashboards inteligentes. A IA monitora, propõe melhorias e aprende com suas decisões para impulsionar o crescimento.
+            </p>
+          </div>
+          <div class="md:w-1/2">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover-scale">
+              <div class="p-6 bg-gray-900 text-white flex items-center">
+                <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center mr-3">
+                  <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h4 class="font-medium">Painel de Governança</h4>
+              </div>
+              <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                  <div>
+                    <p class="text-xs text-gray-500">Desempenho do Sistema</p>
+                    <p class="text-lg font-semibold">84% Eficiência</p>
+                  </div>
+                  <div class="w-16 h-16">
+                    <svg viewBox=\"0 0 36 36\" class=\"circular-chart\">\n                      <path class=\"circle\" stroke-dasharray=\"84, 100\" d=\"M18 2.0845\n                        a 15.9155 15.9155 0 0 1 0 31.831\n                        a 15.9155 15.9155 0 0 1 0 -31.831\" />\n                    </svg>\n                  </div>
+                </div>
+                <div class=\"space-y-3\">
+                  <div>
+                    <div class=\"flex justify-between text-xs text-gray-500 mb-1\">
+                      <span>Agente de Vendas</span>
+                      <span>92%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-1.5">
+                      <div class="bg-blue-600 h-1.5 rounded-full" style="width: 92%"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-xs text-gray-500 mb-1">
+                      <span>Agente de Logística</span>
+                      <span>78%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-1.5">
+                      <div class="bg-green-600 h-1.5 rounded-full" style="width: 78%"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-xs text-gray-500 mb-1">
+                      <span>Agente Financeiro</span>
+                      <span>65%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-1.5">
+                      <div class="bg-purple-600 h-1.5 rounded-full" style="width: 65%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-4 bg-yellow-50 border border-yellow-100 rounded-lg p-3">
+                  <div class="flex">
+                    <div class="flex-shrink-0">
+                      <i class="fas fa-exclamation-circle text-yellow-500 mt-1"></i>
+                    </div>
+                    <div class="ml-3">
+                      <p class="text-sm text-yellow-700">
+                        <span class="font-medium">Recomendação:</span> Ajuste no Agente Financeiro para melhor integração.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Is It For Section -->
+  <section id="who" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Para Quem É?</h2>
+        <div class="w-24 h-1 bg-[var(--primary-600)] mx-auto mb-6"></div>
+        <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+          Uma Plataforma. Múltiplos Propósitos.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Card 1 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover-scale transition-all duration-300 hover:shadow-xl">
+          <div class="p-6">
+            <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mb-4 mx-auto">
+              <i class="fas fa-rocket text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-center text-gray-900 mb-3">Empreendedores Visionários</h3>
+            <p class="text-gray-600 text-center">
+              Monte negócios AI-First sem precisar de equipe técnica. Transforme sua visão em realidade com a ajuda de agentes inteligentes.
+            </p>
+          </div>
+          <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+            <a href="#cta" class="text-[var(--primary-600)] hover:text-[var(--primary-800)] text-sm font-medium flex items-center justify-center">
+              Comece agora <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover-scale transition-all duration-300 hover:shadow-xl">
+          <div class="p-6">
+            <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-4 mx-auto">
+              <i class="fas fa-hands-helping text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-center text-gray-900 mb-3">Criadores Sociais</h3>
+            <p class="text-gray-600 text-center">
+              Lance projetos transformadores e de impacto social. Amplie seu alcance com sistemas automatizados de engajamento e gestão.
+            </p>
+          </div>
+          <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+            <a href="#cta" class="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center justify-center">
+              Transforme realidades <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover-scale transition-all duration-300 hover:shadow-xl">
+          <div class="p-6">
+            <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-green-600 mb-4 mx-auto">
+              <i class="fas fa-paint-brush text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-center text-gray-900 mb-3">Artistas e Educadores</h3>
+            <p class="text-gray-600 text-center">
+              Crie experiências e produtos interativos, inovando na forma de transmitir conhecimento e emoção.
+            </p>
+          </div>
+          <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+            <a href="#cta" class="text-green-600 hover:text-green-800 text-sm font-medium flex items-center justify-center">
+              Expresse sua arte <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover-scale transition-all duration-300 hover:shadow-xl">
+          <div class="p-6">
+            <div class="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 mb-4 mx-auto">
+              <i class="fas fa-book-open text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-center text-gray-900 mb-3">Curadores de Conhecimento</h3>
+            <p class="text-gray-600 text-center">
+              Organize e compartilhe saber de forma inovadora. Crie sistemas vivos de conhecimento que se adaptam com o tempo.
+            </p>
+          </div>
+          <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+            <a href="#cta" class="text-orange-600 hover:text-orange-800 text-sm font-medium flex items-center justify-center">
+              Compartilhe saberes <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles Section -->
+  <section id="principles" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nossos Princípios</h2>
+        <div class="w-24 h-1 bg-[var(--primary-600)] mx-auto mb-6"></div>
+        <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+          Inspirado por um novo modo de ver o mundo.
+        </p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden max-w-4xl mx-auto">
+        <div class="md:flex">
+          <div class="md:w-1/3 gradient-bg p-8 text-white flex flex-col justify-center">
+            <i class="fas fa-edit text-5xl mb-6"></i>
+            <h3 class="text-2xl font-bold mb-4">A Arte de Editar</h3>
+            <p class="text-purple-100">
+              Editar é organizar elementos em estruturas significativas. Tudo pode ser editado: palavras, imagens, dados, ideias, e muito mais.
+            </p>
+          </div>
+          <div class="md:w-2/3 p-8">
+            <p class="text-gray-700 mb-6">
+              Na mAIonLab, acreditamos que a essência da edição está em dar vida e significado aos elementos. Nossa missão é trazer as coisas de volta à vida, resgatando sua vitalidade e transformando-as em projetos que inspiram e transformam realidades.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-6 h-6 rounded-full bg-[var(--primary-600)] flex items-center justify-center text-white">
+                    <i class="fas fa-check text-xs"></i>
+                  </div>
+                </div>
+                <div class="ml-3">
+                  <p class="text-gray-700 font-medium">Humanidade Ampliada</p>
+                  <p class="text-gray-600 text-sm">A IA expande suas capacidades sem substituir o toque humano.</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-6 h-6 rounded-full bg-[var(--primary-600)] flex items-center justify-center text-white">
+                    <i class="fas fa-check text-xs"></i>
+                  </div>
+                </div>
+                <div class="ml-3">
+                  <p class="text-gray-700 font-medium">Estruturas Vivas</p>
+                  <p class="text-gray-600 text-sm">Sistemas que aprendem e evoluem continuamente.</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-6 h-6 rounded-full bg-[var(--primary-600)] flex items-center justify-center text-white">
+                    <i class="fas fa-check text-xs"></i>
+                  </div>
+                </div>
+                <div class="ml-3">
+                  <p class="text-gray-700 font-medium">Propósito Primeiro</p>
+                  <p class="text-gray-600 text-sm">Tecnologia a serviço de significados profundos e transformadores.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="apresentacao" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto animate-fadeIn">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Explore a Plataforma</h2>
+        <div class="w-24 h-1 bg-[var(--primary-600)] mx-auto mb-6"></div>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Descubra como a mAIonLab transforma ideias em negócios inteligentes com IA.
+        </p>
+      </div>
+      <div class="grid gap-10 md:grid-cols-2">
+        <div class="space-y-6 animate-fadeIn">
+          <h3 class="text-2xl font-semibold text-gray-800">O que é a mAIonLab?</h3>
+          <p class="text-gray-600">A mAIonLab é uma plataforma onde você cria e opera empresas com a ajuda de agentes de inteligência artificial. Eles cuidam do operacional, enquanto você foca na visão e nas decisões principais.</p>
+          <h3 class="text-2xl font-semibold text-gray-800">Por que usar?</h3>
+          <ul class="list-disc pl-5 text-gray-600 space-y-2">
+            <li>Agentes especializados para áreas-chave do negócio</li>
+            <li>Ferramentas intuitivas e visuais</li>
+            <li>Você define as regras, a IA executa</li>
+          </ul>
+          <h3 class="text-2xl font-semibold text-gray-800">Quem pode usar?</h3>
+          <p class="text-gray-600">Empreendedores, pequenas equipes, aceleradoras e negócios em transição. Não é preciso saber programar.</p>
+        </div>
+        <div class="space-y-6 animate-fadeIn">
+          <h3 class="text-2xl font-semibold text-gray-800">Como funciona?</h3>
+          <ol class="list-decimal pl-5 text-gray-600 space-y-2">
+            <li>Descreva sua ideia</li>
+            <li>Valide com MVP e dados</li>
+            <li>Monte sua equipe de agentes</li>
+            <li>Escale com o apoio da IA</li>
+          </ol>
+          <h3 class="text-2xl font-semibold text-gray-800">Diferenciais</h3>
+          <ul class="list-disc pl-5 text-gray-600 space-y-2">
+            <li>MVP em até 72h</li>
+            <li>Baixo custo e alta adaptabilidade</li>
+            <li>Transparência e controle total</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section id="cta" class="gradient-bg py-20 px-4 sm:px-6 lg:px-8 text-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Pronto para estruturar o futuro com inteligência e propósito?</h2>
+      <p class="text-xl text-purple-100 mb-10 max-w-3xl mx-auto">
+        Comece hoje a transformar suas ideias em sistemas produtivos orientados por IA. Sua visão estratégica, nossa execução automatizada.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+        <a href="#" class="hover-scale inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-[var(--primary-600)] bg-white hover:bg-gray-50 glow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
+          Experimente a mAIonLab Agora <i class="fas fa-arrow-right ml-3"></i>
+        </a>
+        <a href="#" class="hover-scale inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-[var(--primary-600)] bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-200">
+          <i class="fas fa-comment-dots mr-3"></i> Fale com nosso time
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center mb-4">
+            <i class="fas fa-brain text-[var(--secondary-500)] text-2xl mr-2"></i>
+            <span class="text-xl font-bold">mAIonLab</span>
+          </div>
+          <p class="text-gray-400 text-sm">
+            Plataforma AI-First para transformar ideias em sistemas produtivos organizados.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Produto</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm">Recursos</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm">Preços</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm">Casos de Uso</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm">API</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Empresa</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm">Sobre</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm">Blog</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm">Carreiras</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm">Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Conecte-se</h3>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-discord"></i></a>
+          </div>
+          <div class="mt-6">
+            <p class="text-gray-400 text-sm mb-2">Assine nossa newsletter</p>
+            <div class="flex">
+              <input type="email" placeholder="Seu email" class="px-3 py-2 bg-gray-800 text-white text-sm rounded-l focus:outline-none focus:ring-1 focus:ring-purple-500 w-full">
+              <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-r text-sm">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm mb-4 md:mb-0">
+          © 2023 mAIonLab. Todos os direitos reservados.
+        </p>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white text-sm">Termos</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm">Privacidade</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if(targetId === '#') return;
+          const targetElement = document.querySelector(targetId);
+          if(targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Animate elements when they come into view
+      const observerOptions = { threshold: 0.1 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('animate-fadeIn');
+          }
+        });
+      }, observerOptions);
+      
+      document.querySelectorAll('.hover-scale').forEach(element => {
+        observer.observe(element);
+      });
+    });
+  </script>
+</body>
+</html>
